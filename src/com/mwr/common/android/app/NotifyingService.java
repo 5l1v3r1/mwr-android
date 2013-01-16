@@ -11,8 +11,8 @@ public abstract class NotifyingService extends Service {
 	
 	private NotificationManager notification_manager = null;
 	
-	protected void hideNotification(int view_id) {
-		this.notification_manager.cancel(this.toString(), view_id);
+	protected void hideNotification(String tag, int view_id) {
+		this.notification_manager.cancel(tag, view_id);
 	}
 	
 	@Override
@@ -20,9 +20,9 @@ public abstract class NotifyingService extends Service {
 		this.notification_manager = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
 	}
 	
-	protected abstract void onCreateNotification(RemoteViews view);
+	protected void onCreateNotification(RemoteViews view) {}
 
-	protected void showNotification(int view_id, int icon_id, PendingIntent intent) {
+	protected void showNotification(String tag, int view_id, int icon_id, PendingIntent intent) {
 		Notification notification = new Notification();
 		
 		RemoteViews contentView = new RemoteViews(this.getPackageName(), view_id);
@@ -34,7 +34,7 @@ public abstract class NotifyingService extends Service {
 		notification.contentIntent = intent;
 		notification.contentView = contentView;
 		
-		this.notification_manager.notify(this.toString(), view_id, notification);
+		this.notification_manager.notify(tag, view_id, notification);
 	}
 
 }
