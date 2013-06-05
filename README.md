@@ -14,5 +14,6 @@ A small, in-memory logger that can collect log messages and display them in an A
 License
 -------
 
-mwr-android is released under the MWR Code License v2. See LICENSE for full details.
+mwr-android is released under a 3-clause BSD License.
+See LICENSE for full details.
 
